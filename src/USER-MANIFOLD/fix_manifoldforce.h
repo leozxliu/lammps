@@ -1,6 +1,6 @@
 /* -*- c++ -*- ----------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -21,7 +21,7 @@
    This file is part of the user-manifold package written by
    Stefan Paquay at the Eindhoven University of Technology.
    This module makes it possible to do MD with particles constrained
-   to pretty arbitrary manifolds characterised by some constraint function
+   to pretty arbitrary manifolds characterized by some constraint function
    g(x,y,z) = 0 and its normal grad(g). The number of manifolds available
    right now is limited but can be extended straightforwardly by making
    a new class that inherits from manifold and implements all pure virtual
@@ -34,9 +34,9 @@
 ------------------------------------------------------------------------- */
 
 #ifdef FIX_CLASS
-
-FixStyle(manifoldforce,FixManifoldForce)
-
+// clang-format off
+FixStyle(manifoldforce,FixManifoldForce);
+// clang-format on
 #else
 
 #ifndef LMP_FIX_MANIFOLDFORCE_H
@@ -45,7 +45,9 @@ FixStyle(manifoldforce,FixManifoldForce)
 #include "fix.h"
 
 namespace LAMMPS_NS {
-namespace user_manifold { class manifold; }
+namespace user_manifold {
+  class manifold;
+}
 
 class FixManifoldForce : public Fix {
  public:
@@ -58,15 +60,14 @@ class FixManifoldForce : public Fix {
   void post_force_respa(int, int, int);
   void min_post_force(int);
 
-
  private:
   user_manifold::manifold *ptr_m;
 
   // Stuff to store the parameters in.
-  int nvars; // # of args after manifold name.
+  int nvars;    // # of args after manifold name.
 };
 
-}
+}    // namespace LAMMPS_NS
 
 #endif
 #endif

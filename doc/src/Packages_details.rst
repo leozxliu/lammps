@@ -10,10 +10,10 @@ scripts, and pictures/movies (if available) that illustrate use of the
 package.
 
 The majority of packages can be included in a LAMMPS build with a
-single setting (-D PGK\_NAME for CMake) or command ("make yes-name" for
-make).  See the :doc:`Build package <Build_package>` doc page for more
-info.  A few packages may require additional steps; this is indicated
-in the descriptions below.  The :doc:`Build extras <Build_extras>` doc
+single setting (``-D PGK_<NAME>=on`` for CMake) or command
+(``make yes-<name>`` for make).  See the :doc:`Build package <Build_package>`
+page for more info.  A few packages may require additional steps;
+this is indicated in the descriptions below.  The :doc:`Build extras <Build_extras>`
 page gives those details.
 
 .. note::
@@ -44,11 +44,13 @@ page gives those details.
    * :ref:`MC <PKG-MC>`
    * :ref:`MESSAGE <PKG-MESSAGE>`
    * :ref:`MISC <PKG-MISC>`
+   * :ref:`MLIAP <PKG-MLIAP>`
    * :ref:`MOLECULE <PKG-MOLECULE>`
    * :ref:`MPIIO <PKG-MPIIO>`
    * :ref:`MSCG <PKG-MSCG>`
    * :ref:`OPT <PKG-OPT>`
    * :ref:`PERI <PKG-PERI>`
+   * :ref:`PLUGIN <PKG-PLUGIN>`
    * :ref:`POEMS <PKG-POEMS>`
    * :ref:`PYTHON <PKG-PYTHON>`
    * :ref:`QEQ <PKG-QEQ>`
@@ -60,7 +62,6 @@ page gives those details.
    * :ref:`SRD <PKG-SRD>`
    * :ref:`VORONOI <PKG-VORONOI>`
 
-
 .. table_from_list::
    :columns: 6
 
@@ -68,6 +69,7 @@ page gives those details.
    * :ref:`USER-ATC <PKG-USER-ATC>`
    * :ref:`USER-AWPMD <PKG-USER-AWPMD>`
    * :ref:`USER-BOCS <PKG-USER-BOCS>`
+   * :ref:`USER-BROWNIAN <PKG-USER-BROWNIAN>`
    * :ref:`USER-CGDNA <PKG-USER-CGDNA>`
    * :ref:`USER-CGSDK <PKG-USER-CGSDK>`
    * :ref:`USER-COLVARS <PKG-USER-COLVARS>`
@@ -80,14 +82,17 @@ page gives those details.
    * :ref:`USER-INTEL <PKG-USER-INTEL>`
    * :ref:`USER-LB <PKG-USER-LB>`
    * :ref:`USER-MANIFOLD <PKG-USER-MANIFOLD>`
+   * :ref:`USER-MDI <PKG-USER-MDI>`
    * :ref:`USER-MEAMC <PKG-USER-MEAMC>`
-   * :ref:`USER-MESO <PKG-USER-MESO>`
+   * :ref:`USER-MESODPD <PKG-USER-MESODPD>`
+   * :ref:`USER-MESONT <PKG-USER-MESONT>`
    * :ref:`USER-MGPT <PKG-USER-MGPT>`
    * :ref:`USER-MISC <PKG-USER-MISC>`
    * :ref:`USER-MOFFF <PKG-USER-MOFFF>`
    * :ref:`USER-MOLFILE <PKG-USER-MOLFILE>`
    * :ref:`USER-NETCDF <PKG-USER-NETCDF>`
    * :ref:`USER-OMP <PKG-USER-OMP>`
+   * :ref:`USER-PACE <PKG-USER-PACE>`
    * :ref:`USER-PHONON <PKG-USER-PHONON>`
    * :ref:`USER-PLUMED <PKG-USER-PLUMED>`
    * :ref:`USER-PTM <PKG-USER-PTM>`
@@ -106,9 +111,7 @@ page gives those details.
    * :ref:`USER-VTK <PKG-USER-VTK>`
    * :ref:`USER-YAFF <PKG-USER-YAFF>`
 
-
 ----------
-
 
 .. _PKG-ASPHERE:
 
@@ -126,16 +129,14 @@ particle models including ellipsoids, 2d lines, and 3d triangles.
 * :doc:`Howto spherical <Howto_spherical>`
 * :doc:`pair_style gayberne <pair_gayberne>`
 * :doc:`pair_style resquared <pair_resquared>`
-* `doc/PDF/pair\_gayberne\_extra.pdf <PDF/pair_gayberne_extra.pdf>`_
-* `doc/PDF/pair\_resquared\_extra.pdf <PDF/pair_resquared_extra.pdf>`_
+* `doc/PDF/pair_gayberne_extra.pdf <PDF/pair_gayberne_extra.pdf>`_
+* `doc/PDF/pair_resquared_extra.pdf <PDF/pair_resquared_extra.pdf>`_
 * examples/ASPHERE
 * examples/ellipse
-* http://lammps.sandia.gov/movies.html#line
-* http://lammps.sandia.gov/movies.html#tri
-
+* https://lammps.sandia.gov/movies.html#line
+* https://lammps.sandia.gov/movies.html#tri
 
 ----------
-
 
 .. _PKG-BODY:
 
@@ -146,21 +147,19 @@ BODY package
 
 Body-style particles with internal structure.  Computes,
 time-integration fixes, pair styles, as well as the body styles
-themselves.  See the :doc:`Howto body <Howto_body>` doc page for an
+themselves.  See the :doc:`Howto body <Howto_body>` page for an
 overview.
 
 **Supporting info:**
 
 * src/BODY filenames -> commands
-* :doc:`Howto\_body <Howto_body>`
+* :doc:`Howto_body <Howto_body>`
 * :doc:`atom_style body <atom_style>`
 * :doc:`fix nve/body <fix_nve_body>`
 * :doc:`pair_style body/nparticle <pair_body_nparticle>`
 * examples/body
 
-
 ----------
-
 
 .. _PKG-CLASS2:
 
@@ -181,9 +180,7 @@ CLASS2 molecular force field.
 * :doc:`improper_style class2 <improper_class2>`
 * :doc:`pair_style lj/class2 <pair_class2>`
 
-
 ----------
-
 
 .. _PKG-COLLOID:
 
@@ -213,9 +210,7 @@ Higdon's group at UIUC.
 * examples/colloid
 * examples/srd
 
-
 ----------
-
 
 .. _PKG-COMPRESS:
 
@@ -234,7 +229,7 @@ available on your system.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <compress>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <compress>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -246,9 +241,7 @@ This package has :ref:`specific installation instructions <compress>` on the :do
 * :doc:`dump custom/gz <dump>`
 * :doc:`dump xyz/gz <dump>`
 
-
 ----------
-
 
 .. _PKG-CORESHELL:
 
@@ -260,7 +253,7 @@ CORESHELL package
 Compute and pair styles that implement the adiabatic core/shell model
 for polarizability.  The pair styles augment Born, Buckingham, and
 Lennard-Jones styles with core/shell capabilities.  The :doc:`compute temp/cs <compute_temp_cs>` command calculates the temperature of a
-system with core/shell particles.  See the :doc:`Howto coreshell <Howto_coreshell>` doc page for an overview of how to use
+system with core/shell particles.  See the :doc:`Howto coreshell <Howto_coreshell>` page for an overview of how to use
 this package.
 
 **Author:** Hendrik Heenen (Technical U of Munich).
@@ -276,9 +269,7 @@ this package.
 * :doc:`pair_style lj/cut/coul/long/cs <pair_lj>`
 * examples/coreshell
 
-
 ----------
-
 
 .. _PKG-DIPOLE:
 
@@ -299,9 +290,7 @@ short-range or long-range interactions.
 * :doc:`pair_style lj/long/dipole/long <pair_dipole>`
 * examples/dipole
 
-
 ----------
-
 
 .. _PKG-GPU:
 
@@ -314,36 +303,36 @@ Dozens of pair styles and a version of the PPPM long-range Coulombic
 solver optimized for GPUs.  All such styles have a "gpu" as a suffix
 in their style name. The GPU code can be compiled with either CUDA or
 OpenCL, however the OpenCL variants are no longer actively maintained
-and only the CUDA versions are regularly tested.  The :doc:`Speed gpu <Speed_gpu>` doc page gives details of what hardware and GPU
+and only the CUDA versions are regularly tested.  The
+:doc:`Speed_gpu` page gives details of what hardware and GPU
 software is required on your system, and details on how to build and
 use this package.  Its styles can be invoked at run time via the "-sf
 gpu" or "-suffix gpu" :doc:`command-line switches <Run_options>`.  See
 also the :ref:`KOKKOS <PKG-KOKKOS>` package, which has GPU-enabled styles.
 
 **Authors:** Mike Brown (Intel) while at Sandia and ORNL and Trung Nguyen
-(Northwestern U) while at ORNL.
+(Northwestern U) while at ORNL and later. AMD HIP support by Evgeny
+Kuznetsov, Vladimir Stegailov, and Vsevolod Nikolskiy (HSE University).
 
 **Install:**
 
-This package has :ref:`specific installation instructions <gpu>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <gpu>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/GPU: filenames -> commands
 * src/GPU/README
 * lib/gpu/README
-* :doc:`Speed packages <Speed_packages>`
-* :doc:`Speed gpu <Speed_gpu>`
+* :doc:`Accelerator packages <Speed_packages>`
+* :doc:`GPU package <Speed_gpu>`
 * :doc:`Section 2.6 -sf gpu <Run_options>`
 * :doc:`Section 2.6 -pk gpu <Run_options>`
 * :doc:`package gpu <package>`
 * :doc:`Commands <Commands_all>` pages (:doc:`pair <Commands_pair>`, :doc:`kspace <Commands_kspace>`)
   for styles followed by (g)
-* `Benchmarks page <http://lammps.sandia.gov/bench.html>`_ of web site
-
+* `Benchmarks page <https://lammps.sandia.gov/bench.html>`_ of web site
 
 ----------
-
 
 .. _PKG-GRANULAR:
 
@@ -367,15 +356,13 @@ potentials.
 * examples/granregion
 * examples/pour
 * bench/in.chute
-* http://lammps.sandia.gov/pictures.html#jamming
-* http://lammps.sandia.gov/movies.html#hopper
-* http://lammps.sandia.gov/movies.html#dem
-* http://lammps.sandia.gov/movies.html#brazil
-* http://lammps.sandia.gov/movies.html#granregion
-
+* https://lammps.sandia.gov/pictures.html#jamming
+* https://lammps.sandia.gov/movies.html#hopper
+* https://lammps.sandia.gov/movies.html#dem
+* https://lammps.sandia.gov/movies.html#brazil
+* https://lammps.sandia.gov/movies.html#granregion
 
 ----------
-
 
 .. _PKG-KIM:
 
@@ -384,22 +371,29 @@ KIM package
 
 **Contents:**
 
-This package contains a set of commands that serve as a wrapper on the
+This package contains a command with a set of sub-commands that serve as a
+wrapper on the
 `Open Knowledgebase of Interatomic Models (OpenKIM) <https://openkim.org>`_
-repository of interatomic models (IMs)
-enabling compatible ones to be used in LAMMPS simulations.
-This includes :doc:`kim_init and kim\_interactions <kim_commands>`
-commands to select, initialize and instantiate the IM, and a
-:doc:`kim_query <kim_commands>` command to perform web queries
-for material property predictions of OpenKIM IMs.
+repository of interatomic models (IMs) enabling compatible ones to be used in
+LAMMPS simulations.
+
+
+This includes :doc:`kim init <kim_commands>`, and
+:doc:`kim interactions <kim_commands>` commands to select, initialize and
+instantiate the IM, a :doc:`kim query <kim_commands>` command to perform web
+queries for material property predictions of OpenKIM IMs, a
+:doc:`kim param <kim_commands>` command to access KIM Model Parameters from
+LAMMPS, and a :doc:`kim property <kim_commands>` command to write material
+properties computed in LAMMPS to standard KIM property instance format.
+
 Support for KIM IMs that conform to the
 `KIM Application Programming Interface (API) <https://openkim.org/kim-api/>`_
 is provided by the :doc:`pair_style kim <pair_kim>` command.
 
 .. note::
 
-   The command *pair\_style kim* is called by *kim\_interactions* and
-   is not recommended to be directly used in input scripts.
+   The command *pair_style kim* is called by *kim interactions* and is not
+   recommended to be directly used in input scripts.
 
 To use this package you must have the KIM API library available on your
 system. The KIM API is available for download on the
@@ -413,26 +407,27 @@ The KIM project is led by Ellad Tadmor and Ryan Elliott (U Minnesota)
 and is funded by the `National Science Foundation <https://www.nsf.gov/>`_.
 
 **Authors:** Ryan Elliott (U Minnesota) is the main developer for the KIM
-API and the *pair\_style kim* command. Axel Kohlmeyer (Temple U) and
-Ellad Tadmor (U Minnesota) contributed to the :doc:`kim_commands <kim_commands>`
-interface in close collaboration with Ryan Elliott.
+API and the *pair_style kim* command. Yaser Afshar (U Minnesota),
+Axel Kohlmeyer (Temple U), Ellad Tadmor (U Minnesota), and
+Daniel Karls (U Minnesota) contributed to the
+:doc:`kim command <kim_commands>` interface in close collaboration with
+Ryan Elliott.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <kim>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <kim>` on the
+:doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
-* :doc:`kim_commands <kim_commands>`
+* :doc:`kim command <kim_commands>`
 * :doc:`pair_style kim <pair_kim>`
 * src/KIM: filenames -> commands
 * src/KIM/README
 * lib/kim/README
 * examples/kim
 
-
 ----------
-
 
 .. _PKG-KOKKOS:
 
@@ -445,7 +440,7 @@ Dozens of atom, pair, bond, angle, dihedral, improper, fix, compute
 styles adapted to compile using the Kokkos library which can convert
 them to OpenMP or CUDA code so that they run efficiently on multicore
 CPUs, KNLs, or GPUs.  All the styles have a "kk" as a suffix in their
-style name.  The :doc:`Speed kokkos <Speed_kokkos>` doc page gives
+style name.  The :doc:`KOKKOS package <Speed_kokkos>` page gives
 details of what hardware and software is required on your system, and
 how to build and use this package.  Its styles can be invoked at run
 time via the "-sf kk" or "-suffix kk" :doc:`command-line switches <Run_options>`.  Also see the :ref:`GPU <PKG-GPU>`, :ref:`OPT <PKG-OPT>`,
@@ -468,15 +463,15 @@ lib/kokkos.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <kokkos>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <kokkos>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/KOKKOS: filenames -> commands
 * src/KOKKOS/README
 * lib/kokkos/README
-* :doc:`Speed packages <Speed_packages>`
-* :doc:`Speed kokkos <Speed_kokkos>`
+* :doc:`Accelerator packages <Speed_packages>`
+* :doc:`KOKKOS package <Speed_kokkos>`
 * :doc:`Section 2.6 -k on ... <Run_options>`
 * :doc:`Section 2.6 -sf kk <Run_options>`
 * :doc:`Section 2.6 -pk kokkos <Run_options>`
@@ -484,11 +479,9 @@ This package has :ref:`specific installation instructions <kokkos>` on the :doc:
 * Search the :doc:`commands <Commands_all>` pages (:doc:`fix <Commands_fix>`, :doc:`compute <Commands_compute>`,
   :doc:`pair <Commands_pair>`, :doc:`bond, angle, dihedral, improper <Commands_bond>`,
   :doc:`kspace <Commands_kspace>`) for styles followed by (k)
-* `Benchmarks page <http://lammps.sandia.gov/bench.html>`_ of web site
-
+* `Benchmarks page <https://lammps.sandia.gov/bench.html>`_ of web site
 
 ----------
-
 
 .. _PKG-KSPACE:
 
@@ -506,8 +499,8 @@ interactions.  These include Ewald, particle-particle particle-mesh
 
 Building with this package requires a 1d FFT library be present on
 your system for use by the PPPM solvers.  This can be the KISS FFT
-library provided with LAMMPS, 3rd party libraries like FFTW, or a
-vendor-supplied FFT library.  See the :doc:`Build settings <Build_settings>` doc page for details on how to select
+library provided with LAMMPS, third party libraries like FFTW, or a
+vendor-supplied FFT library.  See the :doc:`Build settings <Build_settings>` page for details on how to select
 different FFT options for your LAMPMS build.
 
 **Supporting info:**
@@ -523,9 +516,7 @@ different FFT options for your LAMPMS build.
 * examples/peptide
 * bench/in.rhodo
 
-
 ----------
-
 
 .. _PKG-LATTE:
 
@@ -544,15 +535,13 @@ description is given with the :doc:`fix latte <fix_latte>` command.
 
 .. _latte-home: https://github.com/lanl/LATTE
 
-
-
 **Authors:** Christian Negre (LANL) and Steve Plimpton (Sandia).  LATTE
 itself is developed at Los Alamos National Laboratory by Marc
 Cawkwell, Anders Niklasson, and Christian Negre.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <latte>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <latte>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -563,9 +552,7 @@ This package has :ref:`specific installation instructions <latte>` on the :doc:`
 * examples/latte
 * `LAMMPS-LATTE tutorial <https://github.com/lanl/LATTE/wiki/Using-LATTE-through-LAMMPS>`_
 
-
 ----------
-
 
 .. _PKG-MANYBODY:
 
@@ -589,9 +576,7 @@ A variety of many-body and bond-order potentials.  These include
 * examples/vashishta
 * bench/in.eam
 
-
 ----------
-
 
 .. _PKG-MC:
 
@@ -603,7 +588,7 @@ MC package
 Several fixes and a pair style that have Monte Carlo (MC) or MC-like
 attributes.  These include fixes for creating, breaking, and swapping
 bonds, for performing atomic swaps, and performing grand-canonical MC
-(GCMC) in conjunction with dynamics.
+(GCMC) or similar processes in conjunction with dynamics.
 
 **Supporting info:**
 
@@ -611,14 +596,16 @@ bonds, for performing atomic swaps, and performing grand-canonical MC
 * :doc:`fix atom/swap <fix_atom_swap>`
 * :doc:`fix bond/break <fix_bond_break>`
 * :doc:`fix bond/create <fix_bond_create>`
+* :doc:`fix bond/create/angle <fix_bond_create>`
 * :doc:`fix bond/swap <fix_bond_swap>`
+* :doc:`fix charge/regulation <fix_charge_regulation>`
 * :doc:`fix gcmc <fix_gcmc>`
+* :doc:`fix tfmc <fix_tfmc>`
+* :doc:`fix widom <fix_widom>`
 * :doc:`pair_style dsmc <pair_dsmc>`
-* http://lammps.sandia.gov/movies.html#gcmc
-
+* https://lammps.sandia.gov/movies.html#gcmc
 
 ----------
-
 
 .. _PKG-MESSAGE:
 
@@ -632,7 +619,7 @@ another application.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <message>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <message>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -644,9 +631,7 @@ This package has :ref:`specific installation instructions <message>` on the :doc
 * :doc:`server mc <server_mc>`
 * examples/message
 
-
 ----------
-
 
 .. _PKG-MISC:
 
@@ -675,12 +660,45 @@ listing, "ls src/MISC", to see the list of commands.
 * :doc:`fix viscosity <fix_viscosity>`
 * examples/KAPPA
 * examples/VISCOSITY
-* http://lammps.sandia.gov/pictures.html#ttm
-* http://lammps.sandia.gov/movies.html#evaporation
-
+* https://lammps.sandia.gov/pictures.html#ttm
+* https://lammps.sandia.gov/movies.html#evaporation
 
 ----------
 
+.. _PKG-MLIAP:
+
+MLIAP package
+-------------
+
+**Contents:**
+
+A general interface for machine-learning interatomic potentials, including PyTorch.
+
+**Install:**
+
+To use this package, also the :ref:`SNAP package <PKG-SNAP>` package needs
+to be installed.  To make the *mliappy* model available, also the
+:ref:`PYTHON package <PKG-PYTHON>` package needs to be installed, the version
+of Python must be 3.6 or later, and the `cython <https://cython.org/>`_ software
+must be installed.
+
+**Author:** Aidan Thompson (Sandia), Nicholas Lubbers (LANL).
+
+**Supporting info:**
+
+* src/MLIAP: filenames -> commands
+* src/MLIAP/README
+* :doc:`pair_style mliap <pair_mliap>`
+* :doc:`compute_style mliap <compute_mliap>`
+* examples/mliap (see README)
+
+When built with the *mliappy* model this package includes an extension for
+coupling with Python models, including PyTorch. In this case, the Python
+interpreter linked to LAMMPS will need the ``cython`` and ``numpy`` modules
+installed.  The provided examples build models with PyTorch, which would
+therefore also needs to be installed to run those examples.
+
+----------
 
 .. _PKG-MOLECULE:
 
@@ -712,9 +730,7 @@ force fields, and a TIP4P water model.
 * bench/in.chain
 * bench/in.rhodo
 
-
 ----------
-
 
 .. _PKG-MPIIO:
 
@@ -736,9 +752,7 @@ written and read in parallel.
 * :doc:`write_restart <write_restart>`
 * :doc:`read_restart <read_restart>`
 
-
 ----------
-
 
 .. _PKG-mscg:
 
@@ -752,8 +766,6 @@ Multi-Scale Coarse-Graining (MSCG) model using the open-source `MS-CG library <m
 
 .. _mscg-home: https://github.com/uchicago-voth/MSCG-release
 
-
-
 To use this package you must have the MS-CG library available on your
 system.
 
@@ -763,7 +775,7 @@ University of Chicago.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <mscg>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <mscg>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -772,9 +784,7 @@ This package has :ref:`specific installation instructions <mscg>` on the :doc:`B
 * lib/mscg/README
 * examples/mscg
 
-
 ----------
-
 
 .. _PKG-OPT:
 
@@ -786,31 +796,29 @@ OPT package
 A handful of pair styles which are optimized for improved CPU
 performance on single or multiple cores.  These include EAM, LJ,
 CHARMM, and Morse potentials.  The styles have an "opt" suffix in
-their style name.  The :doc:`Speed opt <Speed_opt>` doc page gives
+their style name.  The :doc:`OPT package <Speed_opt>` page gives
 details of how to build and use this package.  Its styles can be
 invoked at run time via the "-sf opt" or "-suffix opt" :doc:`command-line switches <Run_options>`.  See also the :ref:`KOKKOS <PKG-KOKKOS>`,
 :ref:`USER-INTEL <PKG-USER-INTEL>`, and :ref:`USER-OMP <PKG-USER-OMP>` packages, which
 have styles optimized for CPU performance.
 
 **Authors:** James Fischer (High Performance Technologies), David Richie,
-and Vincent Natoli (Stone Ridge Technolgy).
+and Vincent Natoli (Stone Ridge Technology).
 
 **Install:**
 
-This package has :ref:`specific installation instructions <opt>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <opt>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/OPT: filenames -> commands
-* :doc:`Speed packages <Speed_packages>`
-* :doc:`Speed opt <Speed_opt>`
+* :doc:`Accelerator packages <Speed_packages>`
+* :doc:`OPT package <Speed_opt>`
 * :doc:`Section 2.6 -sf opt <Run_options>`
 * Search the :doc:`pair style <Commands_pair>` page for styles followed by (t)
-* `Benchmarks page <http://lammps.sandia.gov/bench.html>`_ of web site
-
+* `Benchmarks page <https://lammps.sandia.gov/bench.html>`_ of web site
 
 ----------
-
 
 .. _PKG-PERI:
 
@@ -831,19 +839,39 @@ Foster (UTSA).
 **Supporting info:**
 
 * src/PERI: filenames -> commands
-* `doc/PDF/PDLammps\_overview.pdf <PDF/PDLammps_overview.pdf>`_
-* `doc/PDF/PDLammps\_EPS.pdf <PDF/PDLammps_EPS.pdf>`_
-* `doc/PDF/PDLammps\_VES.pdf <PDF/PDLammps_VES.pdf>`_
+* `doc/PDF/PDLammps_overview.pdf <PDF/PDLammps_overview.pdf>`_
+* `doc/PDF/PDLammps_EPS.pdf <PDF/PDLammps_EPS.pdf>`_
+* `doc/PDF/PDLammps_VES.pdf <PDF/PDLammps_VES.pdf>`_
 * :doc:`atom_style peri <atom_style>`
 * :doc:`pair_style peri/\* <pair_peri>`
 * :doc:`compute damage/atom <compute_damage_atom>`
 * :doc:`compute plasticity/atom <compute_plasticity_atom>`
 * examples/peri
-* http://lammps.sandia.gov/movies.html#peri
-
+* https://lammps.sandia.gov/movies.html#peri
 
 ----------
 
+.. _PKG-PLUGIN:
+
+PLUGIN package
+--------------
+
+**Contents:**
+
+A :doc:`plugin <plugin>` command that can load and unload several
+kind of styles in LAMMPS from shared object files at runtime without
+having to recompile and relink LAMMPS.
+
+**Authors:** Axel Kohlmeyer (Temple U)
+
+**Supporting info:**
+
+* src/PLUGIN: filenames -> commands
+* :doc:`plugin command <plugin>`
+* :doc:`Information on writing plugins <Developer_plugins>`
+* examples/plugin
+
+----------
 
 .. _PKG-POEMS:
 
@@ -862,7 +890,7 @@ connections at hinge points.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <poems>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <poems>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -872,9 +900,7 @@ This package has :ref:`specific installation instructions <poems>` on the :doc:`
 * :doc:`fix poems <fix_poems>`
 * examples/rigid
 
-
 ----------
-
 
 .. _PKG-PYTHON:
 
@@ -885,8 +911,8 @@ PYTHON package
 
 A :doc:`python <python>` command which allow you to execute Python code
 from a LAMMPS input script.  The code can be in a separate file or
-embedded in the input script itself.  See the :doc:`Python call <Python_call>` doc page for an overview of using Python from
-LAMMPS in this manner and all the :doc:`Python <Python_head>` doc pages
+embedded in the input script itself.  See the :doc:`Python call <Python_call>` page for an overview of using Python from
+LAMMPS in this manner and all the :doc:`Python <Python_head>` manual pages
 for other ways to use LAMMPS and Python together.
 
 .. note::
@@ -898,7 +924,7 @@ for other ways to use LAMMPS and Python together.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <python>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <python>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -907,9 +933,7 @@ This package has :ref:`specific installation instructions <python>` on the :doc:
 * lib/python/README
 * examples/python
 
-
 ----------
-
 
 .. _PKG-QEQ:
 
@@ -929,9 +953,7 @@ part of their formulation.
 * examples/qeq
 * examples/streitz
 
-
 ----------
-
 
 .. _PKG-REPLICA:
 
@@ -941,7 +963,7 @@ REPLICA package
 **Contents:**
 
 A collection of multi-replica methods which can be used when running
-multiple LAMMPS simulations (replicas).  See the :doc:`Howto replica <Howto_replica>` doc page for an overview of how to run
+multiple LAMMPS simulations (replicas).  See the :doc:`Howto replica <Howto_replica>` page for an overview of how to run
 multi-replica simulations in LAMMPS.  Methods in the package include
 nudged elastic band (NEB), parallel replica dynamics (PRD),
 temperature accelerated dynamics (TAD), parallel tempering, and a
@@ -962,9 +984,7 @@ another set.
 * examples/prd
 * examples/tad
 
-
 ----------
-
 
 .. _PKG-RIGID:
 
@@ -988,12 +1008,10 @@ Also several computes which calculate properties of rigid bodies.
 * examples/ASPHERE
 * examples/rigid
 * bench/in.rhodo
-* http://lammps.sandia.gov/movies.html#box
-* http://lammps.sandia.gov/movies.html#star
-
+* https://lammps.sandia.gov/movies.html#box
+* https://lammps.sandia.gov/movies.html#star
 
 ----------
-
 
 .. _PKG-SHOCK:
 
@@ -1015,9 +1033,7 @@ a material.
 * examples/hugoniostat
 * examples/msst
 
-
 ----------
-
 
 .. _PKG-SNAP:
 
@@ -1042,9 +1058,7 @@ computes which analyze attributes of the potential.
 * :doc:`compute snav/atom <compute_sna_atom>`
 * examples/snap
 
-
 ----------
-
 
 .. _PKG-SPIN:
 
@@ -1066,17 +1080,17 @@ the usual manner via MD.  Various pair, fix, and compute styles.
 * :doc:`pair_style spin/dipole/long <pair_spin_dipole>`
 * :doc:`pair_style spin/dmi <pair_spin_dmi>`
 * :doc:`pair_style spin/exchange <pair_spin_exchange>`
+* :doc:`pair_style spin/exchange/biquadratic <pair_spin_exchange>`
 * :doc:`pair_style spin/magelec <pair_spin_magelec>`
 * :doc:`pair_style spin/neel <pair_spin_neel>`
 * :doc:`fix nve/spin <fix_nve_spin>`
+* :doc:`fix langevin/spin <fix_langevin_spin>`
 * :doc:`fix precession/spin <fix_precession_spin>`
 * :doc:`compute spin <compute_spin>`
 * :doc:`neb/spin <neb_spin>`
 * examples/SPIN
 
-
 ----------
-
 
 .. _PKG-SRD:
 
@@ -1096,13 +1110,11 @@ colloidal particles.
 * :doc:`fix wall/srd <fix_wall_srd>`
 * examples/srd
 * examples/ASPHERE
-* http://lammps.sandia.gov/movies.html#tri
-* http://lammps.sandia.gov/movies.html#line
-* http://lammps.sandia.gov/movies.html#poly
-
+* https://lammps.sandia.gov/movies.html#tri
+* https://lammps.sandia.gov/movies.html#line
+* https://lammps.sandia.gov/movies.html#poly
 
 ----------
-
 
 .. _PKG-VORONOI:
 
@@ -1118,8 +1130,6 @@ neighbors.
 
 .. _voro-home: http://math.lbl.gov/voro++
 
-
-
 To use this package you must have the Voro++ library available on your
 system.
 
@@ -1129,7 +1139,7 @@ and LBNL.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <voronoi>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <voronoi>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1139,9 +1149,7 @@ This package has :ref:`specific installation instructions <voronoi>` on the :doc
 * :doc:`compute voronoi/atom <compute_voronoi_atom>`
 * examples/voronoi
 
-
 ----------
-
 
 .. _PKG-USER-ADIOS:
 
@@ -1159,7 +1167,7 @@ commands to write and read data using the ADIOS library.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-adios>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-adios>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1171,10 +1179,7 @@ This package has :ref:`specific installation instructions <user-adios>` on the :
 * :doc:`dump custom/adios <dump_adios>`
 * :doc:`read_dump <read_dump>`
 
-
-
 ----------
-
 
 .. _PKG-USER-ATC:
 
@@ -1191,7 +1196,7 @@ atomic information to continuum fields.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-atc>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-atc>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1199,11 +1204,9 @@ This package has :ref:`specific installation instructions <user-atc>` on the :do
 * src/USER-ATC/README
 * :doc:`fix atc <fix_atc>`
 * examples/USER/atc
-* http://lammps.sandia.gov/pictures.html#atc
-
+* https://lammps.sandia.gov/pictures.html#atc
 
 ----------
-
 
 .. _PKG-USER-AWPMD:
 
@@ -1221,7 +1224,7 @@ model.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-awpmd>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-awpmd>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1230,9 +1233,7 @@ This package has :ref:`specific installation instructions <user-awpmd>` on the :
 * :doc:`pair_style awpmd/cut <pair_awpmd>`
 * examples/USER/awpmd
 
-
 ----------
-
 
 .. _PKG-USER-BOCS:
 
@@ -1265,9 +1266,27 @@ J. Phys. Chem. B. 122, 13, 3363-3377 (2018).
 
 Example inputs are in the examples/USER/bocs folder.
 
-
 ----------
 
+.. _PKG-USER-BROWNIAN:
+
+USER-BROWNIAN package
+---------------------
+
+**Contents:**
+
+This package provides :doc:`fix brownian, fix brownian/sphere, and
+fix brownian/asphere <fix_brownian>` as well as
+:doc:`fix propel/self <fix_propel_self>` which allow to do Brownian
+Dynamics time integration of point, spherical and aspherical particles
+and also support self-propelled particles.
+
+**Authors:** Sam Cameron (University of Bristol),
+Stefan Paquay (while at Brandeis University) (initial version of fix propel/self)
+
+Example inputs are in the examples/USER/brownian folder.
+
+----------
 
 .. _PKG-USER-CGDNA:
 
@@ -1295,9 +1314,7 @@ rigid-body integrators with improved stability.
 * :doc:`bond_style oxrna2/\* <bond_oxdna>`
 * :doc:`fix nve/dotc/langevin <fix_nve_dotc_langevin>`
 
-
 ----------
-
 
 .. _PKG-USER-CGSDK:
 
@@ -1320,11 +1337,9 @@ acids.
 * :doc:`pair_style lj/sdk/\* <pair_sdk>`
 * :doc:`angle_style sdk <angle_sdk>`
 * examples/USER/cgsdk
-* http://lammps.sandia.gov/pictures.html#cg
-
+* https://lammps.sandia.gov/pictures.html#cg
 
 ----------
-
 
 .. _PKG-USER-COLVARS:
 
@@ -1348,7 +1363,7 @@ the NAMD MD code, but with portability in mind.  Axel Kohlmeyer
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-colvars>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-colvars>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1359,9 +1374,47 @@ This package has :ref:`specific installation instructions <user-colvars>` on the
 * :doc:`fix colvars <fix_colvars>`
 * examples/USER/colvars
 
-
 ----------
 
+.. _PKG-USER-PACE:
+
+USER-PACE package
+-------------------
+
+**Contents:**
+
+A pair style for the Atomic Cluster Expansion potential (ACE).
+ACE is a methodology for deriving a highly accurate classical potential
+fit to a large archive of quantum mechanical (DFT) data. The USER-PACE
+package provides an efficient implementation for running simulations
+with ACE potentials.
+
+**Authors:**
+
+This package was written by Yury Lysogorskiy^1,
+Cas van der Oord^2, Anton Bochkarev^1,
+Sarath Menon^1, Matteo Rinaldi^1, Thomas Hammerschmidt^1, Matous Mrovec^1,
+Aidan Thompson^3, Gabor Csanyi^2, Christoph Ortner^4, Ralf Drautz^1.
+
+ ^1: Ruhr-University Bochum, Bochum, Germany
+
+ ^2: University of Cambridge, Cambridge, United Kingdom
+
+ ^3: Sandia National Laboratories, Albuquerque, New Mexico, USA
+
+ ^4: University of British Columbia, Vancouver, BC, Canada
+
+**Install:**
+
+This package has :ref:`specific installation instructions <user-pace>` on the :doc:`Build extras <Build_extras>` page.
+
+**Supporting info:**
+
+* src/USER-PACE: filenames -> commands
+* :doc:`pair_style pace <pair_pace>`
+* examples/USER/pace
+
+----------
 
 .. _PKG-USER-PLUMED:
 
@@ -1379,13 +1432,11 @@ script by using the :doc:`fix plumed <fix_plumed>` command.
 Massimilliano Bonomi, Giovanni Bussi, Carlo Camiloni and Gareth
 Tribello.
 
-.. _PLUMED: http://www.plumed.org
-
-
+.. _PLUMED: https://www.plumed.org
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-plumed>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-plumed>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1394,9 +1445,7 @@ This package has :ref:`specific installation instructions <user-plumed>` on the 
 * :doc:`fix plumed <fix_plumed>`
 * examples/USER/plumed
 
-
 ----------
-
 
 .. _PKG-USER-DIFFRACTION:
 
@@ -1418,9 +1467,7 @@ intensities based on kinematic diffraction theory.
 * :doc:`fix saed/vtk <fix_saed_vtk>`
 * examples/USER/diffraction
 
-
 ----------
-
 
 .. _PKG-USER-DPD:
 
@@ -1461,9 +1508,7 @@ Brennan (ARL).
 * :doc:`pair_style multi/lucy/rx <pair_multi_lucy_rx>`
 * examples/USER/dpd
 
-
 ----------
-
 
 .. _PKG-USER-DRUDE:
 
@@ -1473,12 +1518,12 @@ USER-DRUDE package
 **Contents:**
 
 Fixes, pair styles, and a compute to simulate thermalized Drude
-oscillators as a model of polarization.  See the :doc:`Howto drude <Howto_drude>` and :doc:`Howto drude2 <Howto_drude2>` doc pages
+oscillators as a model of polarization.  See the :doc:`Howto drude <Howto_drude>` and :doc:`Howto drude2 <Howto_drude2>` pages
 for an overview of how to use the package.  There are auxiliary tools
 for using this package in tools/drude.
 
-**Authors:** Alain Dequidt (U Blaise Pascal Clermont-Ferrand), Julien
-Devemy (CNRS), and Agilio Padua (U Blaise Pascal).
+**Authors:** Alain Dequidt (U Clermont Auvergne), Julien
+Devemy (CNRS), and Agilio Padua (ENS de Lyon).
 
 **Supporting info:**
 
@@ -1495,9 +1540,7 @@ Devemy (CNRS), and Agilio Padua (U Blaise Pascal).
 * examples/USER/drude
 * tools/drude
 
-
 ----------
-
 
 .. _PKG-USER-EFF:
 
@@ -1531,11 +1574,9 @@ tools/eff; see its README file.
 * examples/USER/eff
 * tools/eff/README
 * tools/eff
-* http://lammps.sandia.gov/movies.html#eff
-
+* https://lammps.sandia.gov/movies.html#eff
 
 ----------
-
 
 .. _PKG-USER-FEP:
 
@@ -1549,7 +1590,7 @@ methods for performing FEP simulations by using a :doc:`fix adapt/fep <fix_adapt
 which have a "soft" in their style name.  There are auxiliary tools
 for using this package in tools/fep; see its README file.
 
-**Author:** Agilio Padua (Universite Blaise Pascal Clermont-Ferrand)
+**Author:** Agilio Padua (ENS de Lyon)
 
 **Supporting info:**
 
@@ -1562,9 +1603,7 @@ for using this package in tools/fep; see its README file.
 * tools/fep/README
 * tools/fep
 
-
 ----------
-
 
 .. _PKG-USER-H5MD:
 
@@ -1581,8 +1620,6 @@ LAMMPS snapshots in this format.
 
 .. _HDF5: http://www.hdfgroup.org/HDF5
 
-
-
 To use this package you must have the HDF5 library available on your
 system.
 
@@ -1591,7 +1628,7 @@ H5MD format.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-h5md>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-h5md>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1600,9 +1637,7 @@ This package has :ref:`specific installation instructions <user-h5md>` on the :d
 * lib/h5md/README
 * :doc:`dump h5md <dump_h5md>`
 
-
 ----------
-
 
 .. _PKG-USER-INTEL:
 
@@ -1613,7 +1648,8 @@ USER-INTEL package
 
 Dozens of pair, fix, bond, angle, dihedral, improper, and kspace
 styles which are optimized for Intel CPUs and KNLs (Knights Landing).
-All of them have an "intel" in their style name.  The :doc:`Speed intel <Speed_intel>` doc page gives details of what hardware and
+All of them have an "intel" in their style name.  The
+:doc:`USER-INTEL package <Speed_intel>` page gives details of what hardware and
 compilers are required on your system, and how to build and use this
 package.  Its styles can be invoked at run time via the "-sf intel" or
 "-suffix intel" :doc:`command-line switches <Run_options>`.  Also see
@@ -1633,25 +1669,23 @@ supported, performance will be sub-optimal.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-intel>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-intel>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/USER-INTEL: filenames -> commands
 * src/USER-INTEL/README
-* :doc:`Speed packages <Speed_packages>`
-* :doc:`Speed intel <Speed_intel>`
+* :doc:`Accelerator packages <Speed_packages>`
+* :doc:`USER-INTEL package <Speed_intel>`
 * :doc:`Section 2.6 -sf intel <Run_options>`
 * :doc:`Section 2.6 -pk intel <Run_options>`
 * :doc:`package intel <package>`
 * Search the :doc:`commands <Commands_all>` pages (:doc:`fix <Commands_fix>`, :doc:`compute <Commands_compute>`,
   :doc:`pair <Commands_pair>`, :doc:`bond, angle, dihedral, improper <Commands_bond>`, :doc:`kspace <Commands_kspace>`) for styles followed by (i)
 * src/USER-INTEL/TEST
-* `Benchmarks page <http://lammps.sandia.gov/bench.html>`_ of web site
-
+* `Benchmarks page <https://lammps.sandia.gov/bench.html>`_ of web site
 
 ----------
-
 
 .. _PKG-USER-LB:
 
@@ -1675,9 +1709,7 @@ Ontario).
 * :doc:`fix lb/viscous <fix_lb_viscous>`
 * examples/USER/lb
 
-
 ----------
-
 
 .. _PKG-USER-MGPT:
 
@@ -1704,9 +1736,7 @@ matrix-MGPT algorithm due to Tomas Oppelstrup at LLNL.
 * :doc:`pair_style mgpt <pair_mgpt>`
 * examples/USER/mgpt
 
-
 ----------
-
 
 .. _PKG-USER-MISC:
 
@@ -1726,12 +1756,10 @@ src/USER-MISC/README file.
 
 * src/USER-MISC: filenames -> commands
 * src/USER-MISC/README
-* one doc page per individual command listed in src/USER-MISC/README
+* one page per individual command listed in src/USER-MISC/README
 * examples/USER/misc
 
-
 ----------
-
 
 .. _PKG-USER-MANIFOLD:
 
@@ -1760,11 +1788,31 @@ Waltham, MA, USA)
 * :doc:`fix nve/manifold/rattle <fix_nve_manifold_rattle>`
 * :doc:`fix nvt/manifold/rattle <fix_nvt_manifold_rattle>`
 * examples/USER/manifold
-* http://lammps.sandia.gov/movies.html#manifold
-
+* https://lammps.sandia.gov/movies.html#manifold
 
 ----------
 
+.. _PKG-USER-MDI:
+
+USER-MDI package
+----------------
+
+**Contents:**
+
+A LAMMPS command and fix to allow client-server coupling of LAMMPS to
+other atomic or molecular simulation codes via the `MolSSI Driver Interface
+(MDI) library <https://molssi-mdi.github.io/MDI_Library/html/index.html>`_.
+
+**Author:** Taylor Barnes - MolSSI, taylor.a.barnes at gmail.com
+
+**Supporting info:**
+
+* src/USER-MDI/README
+* :doc:`mdi/engine <mdi_engine>`
+* :doc:`fix mdi/engine <fix_mdi_engine>`
+* examples/USER/mdi
+
+----------
 
 .. _PKG-USER-MEAMC:
 
@@ -1774,7 +1822,7 @@ USER-MEAMC package
 **Contents:**
 
 A pair style for the modified embedded atom (MEAM) potential
-translated from the Fortran version in the (obsolete) "MEAM" package
+translated from the Fortran version in the (obsolete) MEAM package
 to plain C++. The USER-MEAMC fully replaces the MEAM package, which
 has been removed from LAMMPS after the 12 December 2018 version.
 
@@ -1789,14 +1837,12 @@ Sandia.
 * :doc:`pair_style meam/c <pair_meamc>`
 * examples/meamc
 
-
 ----------
 
+.. _PKG-USER-MESODPD:
 
-.. _PKG-USER-MESO:
-
-USER-MESO package
------------------
+USER-MESODPD package
+--------------------
 
 **Contents:**
 
@@ -1812,19 +1858,67 @@ algorithm.
 
 **Supporting info:**
 
-* src/USER-MESO: filenames -> commands
-* src/USER-MESO/README
+* src/USER-MESODPD: filenames -> commands
+* src/USER-MESODPD/README
 * :doc:`atom_style edpd <atom_style>`
-* :doc:`pair_style edpd <pair_meso>`
-* :doc:`pair_style mdpd <pair_meso>`
-* :doc:`pair_style tdpd <pair_meso>`
+* :doc:`pair_style edpd <pair_mesodpd>`
+* :doc:`pair_style mdpd <pair_mesodpd>`
+* :doc:`pair_style tdpd <pair_mesodpd>`
 * :doc:`fix mvv/dpd <fix_mvv_dpd>`
+* examples/USER/mesodpd
+* https://lammps.sandia.gov/movies.html#mesodpd
+
 * examples/USER/meso
 * http://lammps.sandia.gov/movies.html#mesodpd
 
-
 ----------
 
+.. _PKG-USER-MESONT:
+
+USER-MESONT package
+-------------------
+
+**Contents:**
+
+USER-MESONT is a LAMMPS package for simulation of nanomechanics of
+nanotubes (NTs). The model is based on a coarse-grained representation
+of NTs as "flexible cylinders" consisting of a variable number of
+segments. Internal interactions within a NT and the van der Waals
+interaction between the tubes are described by a mesoscopic force field
+designed and parameterized based on the results of atomic-level
+molecular dynamics simulations. The description of the force field is
+provided in the papers listed below. This package contains two
+independent implementations of this model: :doc:`pair_style mesocnt
+<pair_mesocnt>` is a (minimal) C++ implementation, and :doc:`pair_style
+mesont/tpm <pair_mesont_tpm>` is a more general and feature rich
+implementation based on a Fortran library in the ``lib/mesont`` folder.
+
+**Download of potential files:**
+
+The potential files for these pair styles are *very* large and thus
+are not included in the regular downloaded packages of LAMMPS or the
+git repositories.  Instead, they will be automatically downloaded
+from a web server when the package is installed for the first time.
+
+**Authors of the *mesont* styles:**
+
+Maxim V. Shugaev (University of Virginia), Alexey N. Volkov (University of Alabama), Leonid V. Zhigilei (University of Virginia)
+
+**Author of the *mesocnt* pair style:**
+Philipp Kloza (U Cambridge)
+
+**Supporting info:**
+
+* src/USER-MESONT: filenames -> commands
+* src/USER-MESONT/README
+* :doc:`atom_style mesont <atom_style>`
+* :doc:`pair_style mesont/tpm <pair_mesont_tpm>`
+* :doc:`compute mesont <compute_mesont>`
+* :doc:`pair_style mesocnt <pair_mesocnt>`
+* examples/USER/mesont
+* tools/mesont
+
+----------
 
 .. _PKG-USER-MOFFF:
 
@@ -1844,8 +1938,6 @@ well as the `MOF+ <MOFplus_>`_ website.
 
 .. _MOFplus: https://www.mofplus.org/content/show/MOF-FF
 
-
-
 **Author:** Hendrik Heenen (Technical U of Munich),
 Rochus Schmid (Ruhr-University Bochum).
 
@@ -1859,9 +1951,7 @@ Rochus Schmid (Ruhr-University Bochum).
 * :doc:`improper_style inversion/harmonic <improper_inversion_harmonic>`
 * examples/USER/mofff
 
-
 ----------
-
 
 .. _PKG-USER-MOLFILE:
 
@@ -1894,7 +1984,7 @@ at
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-molfile>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-molfile>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1903,9 +1993,7 @@ This package has :ref:`specific installation instructions <user-molfile>` on the
 * lib/molfile/README
 * :doc:`dump molfile <dump_molfile>`
 
-
 ----------
-
 
 .. _PKG-USER-NETCDF:
 
@@ -1927,25 +2015,16 @@ tools:
 
 * `Ovito <ovito_>`_ (Ovito supports the AMBER convention and the extensions mentioned above)
 * `VMD <vmd-home_>`_
-* `AtomEye <atomeye_>`_ (the libAtoms version of AtomEye contains a NetCDF reader not present in the standard distribution)
 
 .. _ovito: http://www.ovito.org
 
-
-
 .. _vmd-home: https://www.ks.uiuc.edu/Research/vmd/
-
-
-
-.. _atomeye: http://www.libatoms.org
-
-
 
 **Author:** Lars Pastewka (Karlsruhe Institute of Technology).
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-netcdf>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-netcdf>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -1954,9 +2033,7 @@ This package has :ref:`specific installation instructions <user-netcdf>` on the 
 * lib/netcdf/README
 * :doc:`dump netcdf <dump_netcdf>`
 
-
 ----------
-
 
 .. _PKG-USER-OMP:
 
@@ -1968,7 +2045,7 @@ USER-OMP package
 Hundreds of pair, fix, compute, bond, angle, dihedral, improper, and
 kspace styles which are altered to enable threading on many-core CPUs
 via OpenMP directives.  All of them have an "omp" in their style name.
-The :doc:`Speed omp <Speed_omp>` doc page gives details of what hardware
+The :doc:`USER-OMP package <Speed_omp>` page gives details of what hardware
 and compilers are required on your system, and how to build and use
 this package.  Its styles can be invoked at run time via the "-sf omp"
 or "-suffix omp" :doc:`command-line switches <Run_options>`.  Also see
@@ -1994,25 +2071,23 @@ install/un-install the package and build LAMMPS in the usual manner:
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-omp>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-omp>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/USER-OMP: filenames -> commands
 * src/USER-OMP/README
-* :doc:`Speed packages <Speed_packages>`
-* :doc:`Speed omp <Speed_omp>`
+* :doc:`Accelerator packages <Speed_packages>`
+* :doc:`USER-OMP package <Speed_omp>`
 * :doc:`Section 2.6 -sf omp <Run_options>`
 * :doc:`Section 2.6 -pk omp <Run_options>`
 * :doc:`package omp <package>`
 * Search the :doc:`commands <Commands_all>` pages (:doc:`fix <Commands_fix>`, :doc:`compute <Commands_compute>`,
   :doc:`pair <Commands_pair>`, :doc:`bond, angle, dihedral, improper <Commands_bond>`,
   :doc:`kspace <Commands_kspace>`) for styles followed by (o)
-* `Benchmarks page <http://lammps.sandia.gov/bench.html>`_ of web site
-
+* `Benchmarks page <https://lammps.sandia.gov/bench.html>`_ of web site
 
 ----------
-
 
 .. _PKG-USER-PHONON:
 
@@ -2029,7 +2104,7 @@ And a :doc:`dynamical_matrix <dynamical_matrix>` as well as a
 and third order tensor from finite differences.
 
 **Authors:** Ling-Ti Kong (Shanghai Jiao Tong University) for "fix phonon"
-and Charlie Sievers (UC Davis) for "dynamical\_matrix" and "third\_order"
+and Charlie Sievers (UC Davis) for "dynamical_matrix" and "third_order"
 
 **Supporting info:**
 
@@ -2040,9 +2115,7 @@ and Charlie Sievers (UC Davis) for "dynamical\_matrix" and "third\_order"
 * :doc:`third_order <third_order>`
 * examples/USER/phonon
 
-
 ----------
-
 
 .. _PKG-USER-PTM:
 
@@ -2059,14 +2132,12 @@ Matching methodology.
 
 **Supporting info:**
 
-* src/USER-PTM: filenames not starting with ptm\\_ -> commands
-* src/USER-PTM: filenames starting with ptm\\_ -> supporting code
+* src/USER-PTM: filenames not starting with ptm\_ -> commands
+* src/USER-PTM: filenames starting with ptm\_ -> supporting code
 * src/USER-PTM/LICENSE
 * :doc:`compute ptm/atom <compute_ptm_atom>`
 
-
 ----------
-
 
 .. _PKG-USER-QMMM:
 
@@ -2097,11 +2168,10 @@ changes to LAMMPS itself.
 
 **Authors:** Axel Kohlmeyer (Temple U). Mariella Ippolito and Carlo Cavazzoni (CINECA, Italy)
 
-
 **Install:**
 
 This package has :ref:`specific installation instructions <user-qmmm>`
-on the :doc:`Build extras <Build_extras>` doc page.
+on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -2112,9 +2182,7 @@ on the :doc:`Build extras <Build_extras>` doc page.
 * lib/qmmm/example-ec/README
 * lib/qmmm/example-mc/README
 
-
 ----------
-
 
 .. _PKG-USER-QTB:
 
@@ -2142,9 +2210,7 @@ simulation.
 * :doc:`fix qbmsst <fix_qbmsst>`
 * examples/USER/qtb
 
-
 ----------
-
 
 .. _PKG-USER-QUIP:
 
@@ -2159,8 +2225,6 @@ developed by the Cambridge University group.
 
 .. _quip: https://github.com/libAtoms/QUIP
 
-
-
 To use this package you must have the QUIP libAtoms library available
 on your system.
 
@@ -2168,7 +2232,7 @@ on your system.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-quip>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-quip>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -2177,9 +2241,7 @@ This package has :ref:`specific installation instructions <user-quip>` on the :d
 * :doc:`pair_style quip <pair_quip>`
 * examples/USER/quip
 
-
 ----------
-
 
 .. _PKG-USER-REACTION:
 
@@ -2208,11 +2270,9 @@ molecules, and chiral-sensitive reactions.
 * examples/USER/reaction
 * `2017 LAMMPS Workshop <https://lammps.sandia.gov/workshops/Aug17/pdf/gissinger.pdf>`_
 * `2019 LAMMPS Workshop <https://lammps.sandia.gov/workshops/Aug19/talk_gissinger.pdf>`_
-* disarmmd.org
-
+* reacter.org
 
 ----------
-
 
 .. _PKG-USER-REAXC:
 
@@ -2237,9 +2297,7 @@ for monitoring molecules as bonds are created and destroyed.
 * :doc:`fix reax/c/species <fix_reaxc_species>`
 * examples/reax
 
-
 ----------
-
 
 .. _PKG-USER-SCAFACOS:
 
@@ -2264,7 +2322,7 @@ the Forschungszentrum Juelich.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-scafacos>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-scafacos>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -2274,9 +2332,7 @@ This package has :ref:`specific installation instructions <user-scafacos>` on th
 * :doc:`kspace_modify <kspace_modify>`
 * examples/USER/scafacos
 
-
 ----------
-
 
 .. _PKG-USER-SDPD:
 
@@ -2290,7 +2346,7 @@ is an extension of smoothed particle hydrodynamics (SPH) to mesoscale
 where thermal fluctuations are important (see the
 :ref:`USER-SPH package <PKG-USER-SPH>`).
 Also two fixes for moving and rigid body integration of SPH/SDPD particles
-(particles of atom\_style meso).
+(particles of atom_style meso).
 
 **Author:** Morteza Jalalvand (Institute for Advanced Studies in Basic
 Sciences, Iran).
@@ -2304,9 +2360,7 @@ Sciences, Iran).
 * :doc:`fix rigid/meso <fix_rigid_meso>`
 * examples/USER/sdpd
 
-
 ----------
-
 
 .. _PKG-USER-SMD:
 
@@ -2334,19 +2388,17 @@ Dynamics, Ernst Mach Institute, Germany).
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-smd>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-smd>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
 * src/USER-SMD: filenames -> commands
 * src/USER-SMD/README
-* doc/PDF/SMD\_LAMMPS\_userguide.pdf
+* doc/PDF/SMD_LAMMPS_userguide.pdf
 * examples/USER/smd
-* http://lammps.sandia.gov/movies.html#smd
-
+* https://lammps.sandia.gov/movies.html#smd
 
 ----------
-
 
 .. _PKG-USER-SMTBQ:
 
@@ -2369,9 +2421,7 @@ Tetot (LAAS-CNRS, France).
 * :doc:`pair_style smtbq <pair_smtbq>`
 * examples/USER/smtbq
 
-
 ----------
-
 
 .. _PKG-USER-SPH:
 
@@ -2401,13 +2451,11 @@ Dynamics, Ernst Mach Institute, Germany).
 
 * src/USER-SPH: filenames -> commands
 * src/USER-SPH/README
-* doc/PDF/SPH\_LAMMPS\_userguide.pdf
+* doc/PDF/SPH_LAMMPS_userguide.pdf
 * examples/USER/sph
-* http://lammps.sandia.gov/movies.html#sph
-
+* https://lammps.sandia.gov/movies.html#sph
 
 ----------
-
 
 .. _PKG-USER-TALLY:
 
@@ -2429,9 +2477,7 @@ stress, etc) about individual interactions.
 * :doc:`compute \*/tally <compute_tally>`
 * examples/USER/tally
 
-
 ----------
-
 
 .. _PKG-USER-UEF:
 
@@ -2457,9 +2503,7 @@ supporting compute styles and an output option.
 * :doc:`dump cfg/uef <dump_cfg_uef>`
 * examples/uef
 
-
 ----------
-
 
 .. _PKG-USER-VTK:
 
@@ -2474,11 +2518,7 @@ other visualization packages.
 
 .. _vtk: http://www.vtk.org
 
-
-
 .. _paraview: http://www.paraview.org
-
-
 
 To use this package you must have VTK library available on your
 system.
@@ -2487,7 +2527,7 @@ system.
 
 **Install:**
 
-This package has :ref:`specific installation instructions <user-vtk>` on the :doc:`Build extras <Build_extras>` doc page.
+This package has :ref:`specific installation instructions <user-vtk>` on the :doc:`Build extras <Build_extras>` page.
 
 **Supporting info:**
 
@@ -2496,9 +2536,7 @@ This package has :ref:`specific installation instructions <user-vtk>` on the :do
 * lib/vtk/README
 * :doc:`dump vtk <dump_vtk>`
 
-
 ----------
-
 
 .. _PKG-USER-YAFF:
 
@@ -2515,8 +2553,8 @@ The expressions and their use are discussed in the following papers
 
 which discuss the `QuickFF <quickff_>`_ methodology.
 
-.. _vanduyfhuys2015: http://dx.doi.org/10.1002/jcc.23877
-.. _vanduyfhuys2018: http://dx.doi.org/10.1002/jcc.25173
+.. _vanduyfhuys2015: https://doi.org/10.1002/jcc.23877
+.. _vanduyfhuys2018: https://doi.org/10.1002/jcc.25173
 .. _quickff: http://molmod.github.io/QuickFF
 .. _yaff: https://github.com/molmod/yaff
 
@@ -2530,6 +2568,6 @@ which discuss the `QuickFF <quickff_>`_ methodology.
 * :doc:`bond_style mm3 <bond_mm3>`
 * :doc:`improper_style distharm <improper_distharm>`
 * :doc:`improper_style sqdistharm <improper_sqdistharm>`
-* :doc:`pair_style mm3/switch3/coulgauss/long <pair_mm3_switch3_coulgauss_long>`
+* :doc:`pair_style mm3/switch3/coulgauss/long <pair_lj_switch3_coulgauss_long>`
 * :doc:`pair_style lj/switch3/coulgauss/long <pair_lj_switch3_coulgauss_long>`
 * examples/USER/yaff

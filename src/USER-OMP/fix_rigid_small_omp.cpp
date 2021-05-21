@@ -1,6 +1,7 @@
+// clang-format off
 /* ----------------------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -15,6 +16,7 @@
    Contributing author: Axel Kohlmeyer (Temple U)
 ------------------------------------------------------------------------- */
 
+#include "omp_compat.h"
 #include "fix_rigid_small_omp.h"
 #include <cmath>
 #include "atom.h"
@@ -23,7 +25,6 @@
 #include "atom_vec_tri.h"
 #include "comm.h"
 #include "domain.h"
-#include "timer.h"
 
 #if defined(_OPENMP)
 #include <omp.h>
@@ -46,7 +47,7 @@ void FixRigidSmallOMP::initial_integrate(int vflag)
 {
 
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) schedule(static)
+#pragma omp parallel for LMP_DEFAULT_NONE schedule(static)
 #endif
   for (int ibody = 0; ibody < nlocal_body; ibody++) {
 
@@ -84,8 +85,7 @@ void FixRigidSmallOMP::initial_integrate(int vflag)
 
   // virial setup before call to set_xv
 
-  if (vflag) v_setup(vflag);
-  else evflag = 0;
+  v_init(vflag);
 
   // forward communicate updated info of all bodies
 
@@ -117,7 +117,7 @@ void FixRigidSmallOMP::compute_forces_and_torques()
   const int nthreads=comm->nthreads;
 
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) schedule(static)
+#pragma omp parallel for LMP_DEFAULT_NONE schedule(static)
 #endif
   for (int ibody = 0; ibody < nlocal_body+nghost_body; ibody++) {
     double * _noalias const fcm = body[ibody].fcm;
@@ -132,7 +132,7 @@ void FixRigidSmallOMP::compute_forces_and_torques()
   // and then each thread only processes some bodies.
 
 #if defined(_OPENMP)
-#pragma omp parallel default(none)
+#pragma omp parallel LMP_DEFAULT_NONE
 #endif
   {
 #if defined(_OPENMP)
@@ -183,7 +183,7 @@ void FixRigidSmallOMP::compute_forces_and_torques()
 
   if (langflag) {
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) schedule(static)
+#pragma omp parallel for LMP_DEFAULT_NONE schedule(static)
 #endif
     for (int ibody = 0; ibody < nlocal_body; ibody++) {
       double * _noalias const fcm = body[ibody].fcm;
@@ -201,7 +201,7 @@ void FixRigidSmallOMP::compute_forces_and_torques()
 
   if (id_gravity) {
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) schedule(static)
+#pragma omp parallel for LMP_DEFAULT_NONE schedule(static)
 #endif
     for (int ibody = 0; ibody < nbody; ibody++) {
       double * _noalias const fcm = body[ibody].fcm;
@@ -222,7 +222,7 @@ void FixRigidSmallOMP::final_integrate()
   // update vcm and angmom, recompute omega
 
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) schedule(static)
+#pragma omp parallel for LMP_DEFAULT_NONE schedule(static)
 #endif
   for (int ibody = 0; ibody < nlocal_body; ibody++) {
     Body &b = body[ibody];
@@ -294,7 +294,7 @@ void FixRigidSmallOMP::set_xv_thr()
   const int nlocal = atom->nlocal;
 
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) reduction(+:v0,v1,v2,v3,v4,v5)
+#pragma omp parallel for LMP_DEFAULT_NONE reduction(+:v0,v1,v2,v3,v4,v5)
 #endif
   for (int i = 0; i < nlocal; i++) {
     const int ibody = atom2body[i];
@@ -489,7 +489,7 @@ void FixRigidSmallOMP::set_v_thr()
   const int nlocal = atom->nlocal;
 
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) reduction(+:v0,v1,v2,v3,v4,v5)
+#pragma omp parallel for LMP_DEFAULT_NONE reduction(+:v0,v1,v2,v3,v4,v5)
 #endif
   for (int i = 0; i < nlocal; i++) {
     const int ibody = atom2body[i];

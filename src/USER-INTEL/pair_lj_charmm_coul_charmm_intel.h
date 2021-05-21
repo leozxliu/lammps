@@ -1,6 +1,7 @@
+// clang-format off
 /* -*- c++ -*- ----------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -16,9 +17,9 @@
 ------------------------------------------------------------------------- */
 
 #ifdef PAIR_CLASS
-
-PairStyle(lj/charmm/coul/charmm/intel,PairLJCharmmCoulCharmmIntel)
-
+// clang-format off
+PairStyle(lj/charmm/coul/charmm/intel,PairLJCharmmCoulCharmmIntel);
+// clang-format on
 #else
 
 #ifndef LMP_PAIR_LJ_CHARMM_COUL_CHARMM_INTEL_H
@@ -69,7 +70,7 @@ class PairLJCharmmCoulCharmmIntel : public PairLJCharmmCoulCharmm {
     typename IntelBuffers<flt_t,flt_t>::vec4_t **lj;
 
     ForceConst() : _ntypes(0) {}
-    ~ForceConst() { set_ntypes(0,NULL,_cop); }
+    ~ForceConst() { set_ntypes(0,nullptr,_cop); }
 
     void set_ntypes(const int ntypes, Memory *memory, const int cop);
 
@@ -92,7 +93,7 @@ E: The 'package intel' command is required for /intel styles
 
 Self-explanatory.
 
-E: Intel varient of lj/charmm/coul/charmm expects lj cutoff<=coulombic
+E: Intel variant of lj/charmm/coul/charmm expects lj cutoff<=coulombic
 
 The intel accelerated version of the CHARMM style requires that the
 Lennard-Jones cutoff is not greater than the coulombic cutoff.

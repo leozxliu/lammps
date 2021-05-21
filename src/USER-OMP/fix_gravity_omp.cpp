@@ -1,6 +1,7 @@
+// clang-format off
 /* ----------------------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -15,6 +16,7 @@
    Contributing author: Axel Kohlmeyer (Temple U)
 ------------------------------------------------------------------------- */
 
+#include "omp_compat.h"
 #include "fix_gravity_omp.h"
 #include "atom.h"
 #include "update.h"
@@ -69,7 +71,7 @@ void FixGravityOMP::post_force(int /* vflag */)
 
   if (rmass) {
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) reduction(-:grav)
+#pragma omp parallel for LMP_DEFAULT_NONE reduction(-:grav)
 #endif
     for (int i = 0; i < nlocal; i++)
       if (mask[i] & groupbit) {
@@ -81,7 +83,7 @@ void FixGravityOMP::post_force(int /* vflag */)
       }
   } else {
 #if defined(_OPENMP)
-#pragma omp parallel for default(none) reduction(-:grav)
+#pragma omp parallel for LMP_DEFAULT_NONE reduction(-:grav)
 #endif
     for (int i = 0; i < nlocal; i++)
       if (mask[i] & groupbit) {

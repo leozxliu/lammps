@@ -1,6 +1,6 @@
 /* -*- c++ -*- ----------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -12,22 +12,22 @@
 ------------------------------------------------------------------------- */
 
 #ifdef PAIR_CLASS
-
-PairStyle(lennard/mdf,PairLJ_AB_MDF)
-
+// clang-format off
+PairStyle(lennard/mdf,PairLennardMDF);
+// clang-format on
 #else
 
-#ifndef LMP_PAIR_LJ_AB_MDF_H
-#define LMP_PAIR_LJ_AB_MDF_H
+#ifndef LMP_PAIR_LENNARD_MDF_H
+#define LMP_PAIR_LENNARD_MDF_H
 
 #include "pair.h"
 
 namespace LAMMPS_NS {
 
-class PairLJ_AB_MDF : public Pair {
+class PairLennardMDF : public Pair {
  public:
-  PairLJ_AB_MDF(class LAMMPS *);
-  virtual ~PairLJ_AB_MDF();
+  PairLennardMDF(class LAMMPS *);
+  virtual ~PairLennardMDF();
 
   virtual void compute(int, int);
   void settings(int, char **);
@@ -37,19 +37,21 @@ class PairLJ_AB_MDF : public Pair {
   void read_restart(FILE *);
   void write_restart_settings(FILE *);
   void read_restart_settings(FILE *);
+  void write_data(FILE *);
+  void write_data_all(FILE *);
   double single(int, int, int, int, double, double, double, double &);
   void *extract(const char *, int &);
 
  protected:
-  double cut_global,cut_inner_global;
-  double **cut,**cut_inner,**cut_inner_sq;
-  double **aparm,**bparm;
-  double **lj1,**lj2,**lj3,**lj4;
+  double cut_global, cut_inner_global;
+  double **cut, **cut_inner, **cut_inner_sq;
+  double **aparm, **bparm;
+  double **lj1, **lj2, **lj3, **lj4;
 
   void allocate();
 };
 
-}
+}    // namespace LAMMPS_NS
 
 #endif
 #endif

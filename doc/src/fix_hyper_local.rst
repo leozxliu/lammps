@@ -6,7 +6,6 @@ fix hyper/local command
 Syntax
 """"""
 
-
 .. parsed-literal::
 
    fix ID group-ID hyper/local cutbond qfactor Vmax Tequil Dcut alpha Btarget
@@ -22,9 +21,9 @@ Syntax
 * Btarget = desired time boost factor (unitless)
 * zero or more keyword/value pairs may be appended
 * keyword = *bound* or *reset* or *check/ghost* or *check/bias*
-  
+
   .. parsed-literal::
-  
+
        *bound* value = Bfrac
          Bfrac =  -1 or a value >= 0.0
        *reset* value = Rfreq
@@ -32,13 +31,10 @@ Syntax
        *check/ghost* values = none
        *check/bias* values = Nevery error/warn/ignore
 
-
-
 Examples
 """"""""
 
-
-.. parsed-literal::
+.. code-block:: LAMMPS
 
    fix 1 all hyper/local 1.0 0.3 0.8 300.0
    fix 1 all hyper/local 1.0 0.3 0.8 300.0 bound 0.1 reset 0
@@ -83,7 +79,6 @@ the same except for a pre-factor :math:`C_{ij}`, explained below.
 
 The bias energy :math:`V_{ij}` applied to a bond *ij* with maximum strain is
 
-
 .. math::
 
    V^{max}_{ij} = C_{ij} \cdot V^{max} \cdot \left(1 - \left(\frac{E_{ij}}{q}\right)^2\right) \textrm{ for } \left|E_{ij}\right| < qfactor \textrm{ or } 0 \textrm{ otherwise}
@@ -91,7 +86,6 @@ The bias energy :math:`V_{ij}` applied to a bond *ij* with maximum strain is
 The derivative of :math:`V^{max}_{ij}` with respect to the position of
 each atom in the *ij* bond gives a bias force :math:`F^{max}_{ij}` acting
 on the bond as
-
 
 .. math::
 
@@ -127,7 +121,6 @@ is first defined.  The specified *Btarget* factor is then used to adjust the
 
 An instantaneous boost factor :math:`B_{ij}` is computed each timestep
 for each bond, as
-
 
 .. math::
 
@@ -171,9 +164,7 @@ factor varies each timestep and is computed as a function of :math:`V_{max}`,
 :math:`E_{max}`, and :math:`T_{equil}`; see the
 :doc:`fix hyper/global <fix_hyper_global>` doc page for details.
 
-
 ----------
-
 
 Here is additional information on the input parameters for LHD.
 
@@ -254,11 +245,10 @@ well for many solid-state systems.
    atoms move (between quenched states) to be considered an "event".  It
    is an argument to the "compute event/displace" command used to detect
    events.  By default the ghost communication distance is set by the
-   pair\_style cutoff, which will typically be < *Dcut*\ .  The :doc:`comm_modify cutoff <comm_modify>` command should be used to override the ghost
+   pair_style cutoff, which will typically be < *Dcut*\ .  The :doc:`comm_modify cutoff <comm_modify>` command should be used to override the ghost
    cutoff explicitly, e.g.
 
-
-.. parsed-literal::
+.. code-block:: LAMMPS
 
    comm_modify cutoff 12.0
 
@@ -278,8 +268,7 @@ inverse of the alpha parameter discussed in
 
 The *Btarget* argument is the desired time boost factor (a value > 1)
 that all the atoms in the system will experience.  The elapsed time
-t\_hyper for an LHD simulation running for *N* timesteps is simply
-
+t_hyper for an LHD simulation running for *N* timesteps is simply
 
 .. math::
 
@@ -293,7 +282,6 @@ is the elapsed time for a normal MD run of N timesteps.
 You cannot choose an arbitrarily large setting for *Btarget*\ .  The
 maximum value you should choose is
 
-
 .. math::
 
    B_{target} = e^{\beta V_{small}}
@@ -305,7 +293,7 @@ is the specified temperature of the system
 
 Note that if *Btarget* is set smaller than this, the LHD simulation
 will run correctly.  There will just be fewer events because the hyper
-time (t\_hyper equation above) will be shorter.
+time (t_hyper equation above) will be shorter.
 
 .. note::
 
@@ -315,9 +303,7 @@ time (t\_hyper equation above) will be shorter.
    simulations with smaller and smaller *Btarget* values, until the event
    rate does not change (as a function of hyper time).
 
-
 ----------
-
 
 Here is additional information on the optional keywords for this fix.
 
@@ -377,23 +363,24 @@ keyword is not enabled, the output of that statistic will be 0.
 Note that both of these computations are costly, hence they are only
 enabled by these keywords.
 
-
 ----------
 
-
-**Restart, fix\_modify, output, run start/stop, minimize info:**
+Restart, fix_modify, output, run start/stop, minimize info
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 No information about this fix is written to :doc:`binary restart files <restart>`.
 
-The :doc:`fix_modify <fix_modify>` *energy* option is supported by this
-fix to add the energy of the bias potential to the system's potential
-energy as part of :doc:`thermodynamic output <thermo_style>`.
+The :doc:`fix_modify <fix_modify>` *energy* option is supported by
+this fix to add the energy of the bias potential to the global
+potential energy of the system as part of :doc:`thermodynamic output
+<thermo_style>`.  The default setting for this fix is :doc:`fix_modify
+energy no <fix_modify>`.
 
 This fix computes a global scalar and global vector of length 28,
-which can be accessed by various :doc:`output commands <Howto_output>`.
-The scalar is the magnitude of the bias potential (energy units)
-applied on the current timestep, summed over all biased bonds.  The
-vector stores the following quantities:
+which can be accessed by various :doc:`output commands
+<Howto_output>`.  The scalar is the magnitude of the bias potential
+(energy units) applied on the current timestep, summed over all biased
+bonds.  The vector stores the following quantities:
 
 * 1 = average boost for all bonds on this step (unitless)
 * 2 = # of biased bonds on this step
@@ -525,8 +512,8 @@ Value 27 computes the average boost for biased bonds only on this step.
 Value 28 is the count of bonds with an absolute value of strain >= q
 on this step.
 
-The scalar and vector values calculated by this fix are all
-"intensive".
+The scalar value is an "extensive" quantity since it grows with the
+system size; the vector values are all "intensive".
 
 This fix also computes a local vector of length the number of bonds
 currently in the system.  The value for each bond is its :math:`C_{ij}`
@@ -539,11 +526,11 @@ close to 1.0, which indicates a good choice of :math:`V^{max}`.
 The local values calculated by this fix are unitless.
 
 No parameter of this fix can be used with the *start/stop* keywords of
-the :doc:`run <run>` command.  This fix is not invoked during :doc:`energy minimization <minimize>`.
+the :doc:`run <run>` command.  This fix is not invoked during
+:doc:`energy minimization <minimize>`.
 
 Restrictions
 """"""""""""
-
 
 This fix is part of the REPLICA package.  It is only enabled if LAMMPS
 was built with that package.  See the :doc:`Build package <Build_package>`
@@ -561,19 +548,13 @@ The default settings for optimal keywords are bounds = -1 and reset =
 -1.  The check/ghost and check/bias keywords are not enabled by
 default.
 
-
 ----------
 
-
 .. _Voter2013lhd:
-
-
 
 **(Voter2013)** S. Y. Kim, D. Perez, A. F. Voter, J Chem Phys, 139,
 144110 (2013).
 
 .. _Mironlhd:
-
-
 
 **(Miron)** R. A. Miron and K. A. Fichthorn, J Chem Phys, 119, 6210 (2003).

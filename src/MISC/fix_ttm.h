@@ -1,6 +1,6 @@
 /* -*- c++ -*- ----------------------------------------------------------
    LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator
-   http://lammps.sandia.gov, Sandia National Laboratories
+   https://lammps.sandia.gov/, Sandia National Laboratories
    Steve Plimpton, sjplimp@sandia.gov
 
    Copyright (2003) Sandia Corporation.  Under the terms of Contract
@@ -12,9 +12,9 @@
 ------------------------------------------------------------------------- */
 
 #ifdef FIX_CLASS
-
-FixStyle(ttm,FixTTM)
-
+// clang-format off
+FixStyle(ttm,FixTTM);
+// clang-format on
 #else
 
 #ifndef LMP_FIX_TTM_H
@@ -48,29 +48,27 @@ class FixTTM : public Fix {
   double compute_vector(int);
 
  private:
-  int me;
   int nfileevery;
   int nlevels_respa;
   int seed;
   class RanMars *random;
-  FILE *fp,*fpr;
-  int nxnodes,nynodes,nznodes,total_nnodes;
-  int ***nsum;
-  int ***nsum_all,***T_initial_set;
-  double *gfactor1,*gfactor2,*ratio;
-  double **flangevin;
-  double ***T_electron,***T_electron_old;
-  double ***sum_vsq,***sum_mass_vsq;
-  double ***sum_vsq_all,***sum_mass_vsq_all;
-  double ***net_energy_transfer,***net_energy_transfer_all;
-  double electronic_specific_heat,electronic_density;
+  FILE *fp;
+  int nxnodes, nynodes, nznodes;
+  bigint total_nnodes;
+  int ***nsum, ***nsum_all;
+  double *gfactor1, *gfactor2, *ratio, **flangevin;
+  double ***T_electron, ***T_electron_old;
+  double ***sum_vsq, ***sum_mass_vsq;
+  double ***sum_vsq_all, ***sum_mass_vsq_all;
+  double ***net_energy_transfer, ***net_energy_transfer_all;
+  double electronic_specific_heat, electronic_density;
   double electronic_thermal_conductivity;
-  double gamma_p,gamma_s,v_0,v_0_sq;
+  double gamma_p, gamma_s, v_0, v_0_sq;
 
-  void read_initial_electron_temperatures();
+  void read_initial_electron_temperatures(const char *);
 };
 
-}
+}    // namespace LAMMPS_NS
 
 #endif
 #endif
